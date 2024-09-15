@@ -40,7 +40,7 @@ export async function signupUser(userData) {
       },
       body: JSON.stringify({
         name: userData.name,
-        userName: userData.userName,
+        username: userData.username,
         email: userData.email,
         password: userData.password,
       }),
