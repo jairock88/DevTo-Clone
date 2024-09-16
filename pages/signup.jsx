@@ -75,7 +75,7 @@ export default function signUpForm() {
                   fill="none"
                   role="img"
                   aria-hidden="true"
-                  class="absolute left-4"
+                  className="absolute left-4"
                 >
                   <rect
                     x="2.5"
