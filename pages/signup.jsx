@@ -1,4 +1,11 @@
-export default function signUp() {
+import { useForm } from "react-hook-form";
+
+import clsx from "clsx";
+import { signupUser } from "@/utils/api";
+import { toast } from "sonner";
+import { useRouter } from "next/router";
+
+export default function signUpForm() {
   return (
     <div className="bg-white h-screen py-9 px-4 m-auto">
       <div className="flex justify-center items-center">
