@@ -1,36 +1,5 @@
 const BASE_URL = "https://bcknd-chal.onrender.com";
 
-// export async function login(email, password) {
-//   try {
-//     const response = await fetch(`${BASE_URL}/auth/login`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({ email, password }),
-//     });
-
-//     // Verificamos si la respuesta es correcta
-//     if (!response.ok) {
-//       const errorData = await response.json();
-//       throw new Error(errorData.message || "Login failed");
-//     }
-
-//     const data = await response.json();
-
-//     // Si el login es exitoso, guardamos el token en el localStorage
-//     if (data.success && data.data.token) {
-//       localStorage.setItem("token", data.data.token);
-//       return { success: true, token: data.data.token };
-//     } else {
-//       throw new Error("Invalid response structure");
-//     }
-//   } catch (error) {
-//     console.error("Error during login:", error);
-//     return { success: false, message: error.message };
-//   }
-// }
-
 export async function login(email, password) {
   try {
     const response = await fetch(`${BASE_URL}/auth/login`, {
@@ -138,27 +107,6 @@ export async function createPost(postObject) {
   return data;
 }
 
-// export async function getUser(userId) {
-//   try {
-//     let response = await fetch(`${BASE_URL}/users/${userId}`, {
-//       headers: {
-//         Authorization: `Bearer ${localStorage.getItem("token")}`,
-//       },
-//     });
-
-//     if (!response.ok) {
-//       throw new Error(`Error fetching user: ${response.statusText}`);
-//     }
-
-//     let data = await response.json();
-
-//     return data.data.user;
-//   } catch (error) {
-//     console.error("Error fetching user:", error);
-//     return null;
-//   }
-// }
-
 export async function getUser(userId) {
   try {
     let response = await fetch(`${BASE_URL}/users/${userId}`, {
@@ -182,3 +130,55 @@ export async function getUser(userId) {
     return null;
   }
 }
+
+// export async function login(email, password) {
+//   try {
+//     const response = await fetch(`${BASE_URL}/auth/login`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({ email, password }),
+//     });
+
+//     // Verificamos si la respuesta es correcta
+//     if (!response.ok) {
+//       const errorData = await response.json();
+//       throw new Error(errorData.message || "Login failed");
+//     }
+
+//     const data = await response.json();
+
+//     // Si el login es exitoso, guardamos el token en el localStorage
+//     if (data.success && data.data.token) {
+//       localStorage.setItem("token", data.data.token);
+//       return { success: true, token: data.data.token };
+//     } else {
+//       throw new Error("Invalid response structure");
+//     }
+//   } catch (error) {
+//     console.error("Error during login:", error);
+//     return { success: false, message: error.message };
+//   }
+// }
+
+// export async function getUser(userId) {
+//   try {
+//     let response = await fetch(`${BASE_URL}/users/${userId}`, {
+//       headers: {
+//         Authorization: `Bearer ${localStorage.getItem("token")}`,
+//       },
+//     });
+
+//     if (!response.ok) {
+//       throw new Error(`Error fetching user: ${response.statusText}`);
+//     }
+
+//     let data = await response.json();
+
+//     return data.data.user;
+//   } catch (error) {
+//     console.error("Error fetching user:", error);
+//     return null;
+//   }
+// }
