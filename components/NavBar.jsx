@@ -1,34 +1,48 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { getUser } from "@/utils/api";
+import { useRouter } from "next/router";
 
 export default function Navbar() {
   const [user, setUser] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const router = useRouter();
+
+  const handleSignUpClick = () => {
+    router.push("/signup");
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
-      // Obtener el ID del usuario desde el localStorage
       const userId = localStorage.getItem("userId");
 
       if (userId) {
         const userData = await getUser(userId);
-        console.log("User data in Navbar:", userData); // Verifica los datos en la consola
-        setUser(userData); // Guardar todos los datos del usuario en el estado
+        console.log("User data in Navbar:", userData);
+        setUser(userData);
       }
     };
 
     fetchUser();
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false); // Cerrar el dropdown si el clic fue afuera
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const handleLogout = () => {
-    // Eliminar el token y el userId de localStorage
     localStorage.removeItem("userId");
     localStorage.removeItem("token");
-
-    // Actualizar el estado para que el usuario sea null
     setUser(null);
-
-    // Opcional: redirigir al usuario a la página de inicio de sesión o inicio
     window.location.href = "/enter";
   };
 
@@ -62,25 +76,60 @@ export default function Navbar() {
                   Create Post
                 </button>
                 <button className="text-gray-700 hover:bg-blue-200/45 px-3 py-2 rounded-md text-md font-medium hover:underline mr-3">
-                  <i className="fa fa-bell" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    role="img"
+                    aria-labelledby="aogwm5u9o710d43mx0tef89o2noubg16"
+                  >
+                    <title id="aogwm5u9o710d43mx0tef89o2noubg16">
+                      Notifications
+                    </title>
+                    <path d="M20 17h2v2H2v-2h2v-7a8 8 0 1116 0v7zm-2 0v-7a6 6 0 10-12 0v7h12zm-9 4h6v2H9v-2z"></path>
+                  </svg>
                 </button>
                 <img
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                   src={user.profilePic}
                   alt="User Avatar"
-                  className="h-10 w-10 rounded-full relative cursor-pointer"
+                  className="h-10 w-10 rounded-full relative cursor-pointer hover:border-spacing-1 hover:border-2 hover:border-gray-300/70"
                 />
                 {isDropdownOpen && (
-                  <div className="bg-white absolute mt-40 p-4 shadow-lg rounded-md border border-gray-300">
-                    <h1 className="text-black font-semibold">{user.name}</h1>{" "}
-                    {/* Renderiza el nombre del usuario */}
-                    <button
-                      className="mt-2 text-red-500 hover:text-red-700"
-                      onClick={handleLogout}
-                    >
-                      Log out
-                    </button>{" "}
-                    {/* Ejemplo de opción */}
+                  <div
+                    ref={dropdownRef}
+                    className="bg-white absolute mt-80 shadow-lg rounded-md border border-gray-300 p-1"
+                  >
+                    <div className="p-1">
+                      <button className="rounded-md text-gray-700 items-center py-1 hover:text-blue-800 hover:bg-blue-600/10 hover:underline">
+                        <h1 className="font-semibold px-4 mr-10">
+                          {user.name}
+                        </h1>
+
+                        <h1 className="text-sm font-thin px-4 py-1 flex">
+                          @{user.username}
+                        </h1>
+                      </button>
+                      <hr className="flex-grow border-gray-300 m-1" />
+
+                      <button className="flex w-full mt-0 rounded-md text-gray-700 py-3 px-4 items-center hover:text-blue-800 hover:bg-blue-600/10 hover:underline">
+                        Dashboard
+                      </button>
+                      <button className="flex w-full mt-0 rounded-md text-gray-700 py-3 px-4 items-center hover:text-blue-800 hover:bg-blue-600/10 hover:underline">
+                        Create Post
+                      </button>
+                      <button className="flex w-full mt-0 rounded-md text-gray-700 py-3 px-4 items-center hover:text-blue-800 hover:bg-blue-600/10 hover:underline">
+                        Reading list
+                      </button>
+                      <hr className="flex-grow border-gray-300 py-1 m-1" />
+                      <button
+                        className="flex w-full rounded-md text-gray-700 py-2 px-4 items-center hover:text-blue-800 hover:bg-blue-600/10 hover:underline"
+                        onClick={handleLogout}
+                      >
+                        Sign out
+                      </button>
+                    </div>
                   </div>
                 )}
               </>
@@ -93,8 +142,8 @@ export default function Navbar() {
                   Log in
                 </a>
                 <a
-                  href="/usersignup"
-                  className="bg-white border border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white hover:underline h-10 w-[145px] px-4 py-2 rounded-md text-md font-medium"
+                  onClick={handleSignUpClick}
+                  className="bg-white border cursor-pointer border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white hover:underline h-10 w-[145px] px-4 py-2 rounded-md text-md font-medium"
                 >
                   Create account
                 </a>

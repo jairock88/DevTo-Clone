@@ -131,6 +131,32 @@ export async function getUser(userId) {
   }
 }
 
+export async function getUserCount() {
+  try {
+    let response = await fetch(`${BASE_URL}/users/count`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`, // Incluye el token de autenticación si es necesario
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error fetching user count: ${response.statusText}`);
+    }
+
+    let data = await response.json();
+
+    // Loguea los datos en la consola
+    console.log("User count fetched:", data);
+
+    // Devuelve el número total de usuarios
+    return data.data.count;
+  } catch (error) {
+    // Maneja y muestra el error en la consola
+    console.error("Error fetching user count:", error);
+    return null;
+  }
+}
+
 // export async function login(email, password) {
 //   try {
 //     const response = await fetch(`${BASE_URL}/auth/login`, {
