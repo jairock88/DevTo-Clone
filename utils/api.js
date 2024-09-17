@@ -87,22 +87,44 @@ export async function getAllPosts() {
   }
 }
 
-export async function createPost(postObject) {
-  const token = localStorage.getItem("token"); // Obtén el token del local storage
+// export async function createPost(postData) {
+//   try {
+//     const headers = {
+//       "Content-Type": "application/json",
+//     };
 
-  const response = await fetch(`${BASE_URL}/post`, {
+//     const token = localStorage.getItem("token");
+//     if (token) {
+//       headers.Authorization = `Bearer ${token}`;
+//     }
+
+//     const response = await fetch(`${BASE_URL}/post`, {
+//       method: "POST",
+//       headers,
+//       body: JSON.stringify(postData),
+//     });
+
+//     if (!response.ok) {
+//       throw new Error(`Error creating post: ${response.statusText}`);
+//     }
+
+//     const data = await response.json();
+//     return data;
+//   } catch (error) {
+//     console.error("Error creating post:", error);
+//     throw error; // Re-lanzar el error para manejarlo en el componente
+//   }
+// }
+
+export async function createPost(title, image, body, tags, token) {
+  const response = await fetch(`${BASE_URL}/post/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, // Incluye el token en los encabezados
+      Authorization: token,
     },
-    body: JSON.stringify(postObject),
+    body: JSON.stringify({ title, image, body, tags }),
   });
-
-  if (!response.ok) {
-    throw new Error("Error creating post");
-  }
-
   const data = await response.json();
   return data;
 }
