@@ -8,8 +8,16 @@ export default function Navbar() {
   const dropdownRef = useRef(null);
   const router = useRouter();
 
+  const handleCreatePostClick = () => {
+    router.push("/createpost");
+  };
+
   const handleSignUpClick = () => {
     router.push("/signup");
+  };
+
+  const homeClick = () => {
+    router.push("/");
   };
 
   useEffect(() => {
@@ -51,13 +59,14 @@ export default function Navbar() {
       <div className="mx-6">
         <div className="max-w-[1350px] mx-auto h-[56px] flex items-center justify-between bg-white">
           <div className="flex items-center flex-1">
-            <a href="/" className="mr-4">
+            <div className="mr-4">
               <img
-                className="h-10"
+                onClick={homeClick}
+                className="h-10 hover:cursor-pointer"
                 src="https://media.dev.to/cdn-cgi/image/quality=100/https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png"
                 alt="Logo"
               />
-            </a>
+            </div>
             <div className="relative flex-1 max-w-[800px]">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <search className="h-5 w-5 text-gray-800" />
@@ -72,7 +81,10 @@ export default function Navbar() {
           <div className="flex items-center px-4">
             {user ? (
               <>
-                <button className="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md text-md font-medium hover:underline mr-3">
+                <button
+                  onClick={handleCreatePostClick}
+                  className="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md text-md font-medium hover:underline mr-3"
+                >
                   Create Post
                 </button>
                 <button className="text-gray-700 hover:bg-blue-200/45 px-3 py-2 rounded-md text-md font-medium hover:underline mr-3">

@@ -18,11 +18,9 @@ export default function UserSignup() {
   const password = watch("password");
   const router = useRouter();
 
-  // Manejo de envío de formulario
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      // Llamada a la API para crear usuario
       const response = await signupUser(data);
       console.log("Sign up successful", response);
       toast.success("Account created successfully!");
@@ -211,7 +209,6 @@ export default function UserSignup() {
             </div>
           </div>
 
-          {/* Asegúrate de que el botón sea de tipo submit */}
           <button
             type="submit"
             className="w-35 bg-blue-700 text-white py-2 px-4 rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
