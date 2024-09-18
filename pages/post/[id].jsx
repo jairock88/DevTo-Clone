@@ -34,9 +34,8 @@ export default function PostDetail() {
         {/* Header Image */}
         <div className="relative h-48 bg-blue-200">
           <Image
-            width={600}
-            height={240}
-            src={post.image}
+            layout="fill"
+            src={post.image || "/default-image.jpg"}
             alt="Post Image"
             className="w-full h-full object-cover"
           />
@@ -47,6 +46,8 @@ export default function PostDetail() {
           <div className="flex items-center mb-4">
             <Image
               src={post.user.profilePic}
+              width={40}
+              height={40}
               alt="User avatar"
               className="w-10 h-10 rounded-full mr-4"
             />
