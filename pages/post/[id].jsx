@@ -35,6 +35,7 @@ export default function PostDetail() {
         <div className="relative h-48 bg-blue-200">
           <Image
             layout="fill"
+            objectFit="cover"
             src={post.image || "/default-image.jpg"}
             alt="Post Image"
             className="w-full h-full object-cover"
