@@ -69,26 +69,6 @@ export async function signupUser(userData) {
   }
 }
 
-// export async function getAllPosts() {
-//   let response = await fetch(`${BASE_URL}/post`);
-//   let data = await response.json();
-
-//   if (data.success) {
-//     let posts = data.data.posts;
-//     return posts.map((post) => ({
-//       id: post._id,
-//       title: post.title,
-//       image: post.image,
-//       body: post.body,
-//       user: post.user,
-//       createdAt: post.createdAt,
-//       updatedAt: post.updatedAt,
-//     }));
-//   } else {
-//     throw new Error("Failed to fetch posts");
-//   }
-// }
-
 export async function getAllPosts() {
   let response = await fetch(`${BASE_URL}/post`);
   let data = await response.json();
@@ -96,16 +76,15 @@ export async function getAllPosts() {
   if (data.success) {
     let posts = data.data.posts;
 
-    // Añadir lógica para obtener información del usuario
     const postsWithUserData = await Promise.all(
       posts.map(async (post) => {
-        const user = await getUser(post.user); // Obtén la información del usuario por cada post
+        const user = await getUser(post.user);
         return {
           id: post._id,
           title: post.title,
           image: post.image,
           body: post.body,
-          user: user, // Agrega la información completa del usuario aquí
+          user: user,
           hashtags: post.hashtags,
           createdAt: post.createdAt,
           updatedAt: post.updatedAt,
@@ -182,54 +161,16 @@ export async function getUserCount() {
   }
 }
 
-// export async function login(email, password) {
-//   try {
-//     const response = await fetch(`${BASE_URL}/auth/login`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({ email, password }),
-//     });
-
-//     // Verificamos si la respuesta es correcta
-//     if (!response.ok) {
-//       const errorData = await response.json();
-//       throw new Error(errorData.message || "Login failed");
-//     }
-
-//     const data = await response.json();
-
-//     // Si el login es exitoso, guardamos el token en el localStorage
-//     if (data.success && data.data.token) {
-//       localStorage.setItem("token", data.data.token);
-//       return { success: true, token: data.data.token };
-//     } else {
-//       throw new Error("Invalid response structure");
-//     }
-//   } catch (error) {
-//     console.error("Error during login:", error);
-//     return { success: false, message: error.message };
-//   }
-// }
-
-// export async function getUser(userId) {
-//   try {
-//     let response = await fetch(`${BASE_URL}/users/${userId}`, {
-//       headers: {
-//         Authorization: `Bearer ${localStorage.getItem("token")}`,
-//       },
-//     });
-
-//     if (!response.ok) {
-//       throw new Error(`Error fetching user: ${response.statusText}`);
-//     }
-
-//     let data = await response.json();
-
-//     return data.data.user;
-//   } catch (error) {
-//     console.error("Error fetching user:", error);
-//     return null;
-//   }
-// }
+export async function getPostById(id) {
+  try {
+    const response = await fetch(`${BASE_URL}/post/${id}`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch post");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching post:", error);
+    throw error;
+  }
+}

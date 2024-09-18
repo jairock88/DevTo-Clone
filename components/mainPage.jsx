@@ -8,7 +8,7 @@ export default function MainPage() {
     <main className="bg-neutral-200/50 text-black pt-[68px]">
       <div className="max-w-[1350px] mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {/* Columna izquierda */}
-        <div className="col-span-1 flex flex-col space-y-4">
+        <div className="col-span-1 flex flex-col space-y-4 hidden md:flex">
           <LoginCard />
           <Sidebar />
         </div>
@@ -19,7 +19,7 @@ export default function MainPage() {
         </div>
 
         {/* Columna derecha */}
-        <div className="col-span-1 lg:col-span-1">
+        <div className="col-span-1 lg:col-span-1 hidden lg:flex">
           <SideBarRight />
         </div>
       </div>

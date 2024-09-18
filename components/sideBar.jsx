@@ -49,15 +49,17 @@ export default function Sidebar() {
       <nav className="flex-grow">
         <ul className="space-y-2 p-4">
           {menuItems.map((item, index) => (
-            <li key={index}>
-              <a
-                href="#"
-                className="flex items-center space-x-3 text-gray-700 hover:bg-gray-100 rounded-md p-2 transition-colors duration-200"
-              >
-                <item.icon className="w-5 h-5" />
-                <span className="text-sm font-medium">{item.text}</span>
-              </a>
-            </li>
+            <div className="hover:bg-blue-600/20 rounded-md transition-colors duration-100">
+              <li key={index}>
+                <a
+                  href="#"
+                  className="flex items-center space-x-3 text-gray-700 p-2"
+                >
+                  <item.icon className="w-5 h-5" />
+                  <span className="text-sm font-medium">{item.text}</span>
+                </a>
+              </li>
+            </div>
           ))}
         </ul>
       </nav>
@@ -65,15 +67,17 @@ export default function Sidebar() {
         <h3 className="text-sm font-semibold text-gray-500 mb-2">Other</h3>
         <ul className="space-y-2">
           {otherItems.map((item, index) => (
-            <li key={index}>
-              <a
-                href="#"
-                className="flex items-center space-x-3 text-gray-700 hover:bg-gray-100 rounded-md p-2 transition-colors duration-200"
-              >
-                <item.icon className="w-5 h-5" />
-                <span className="text-sm font-medium">{item.text}</span>
-              </a>
-            </li>
+            <div className="hover:bg-blue-600/20 rounded-md transition-colors duration-100">
+              <li key={index}>
+                <a
+                  href="#"
+                  className="flex items-center space-x-3 text-gray-700 rounded-md p-2 "
+                >
+                  <item.icon className="w-5 h-5" />
+                  <span className="text-sm font-medium">{item.text}</span>
+                </a>
+              </li>
+            </div>
           ))}
         </ul>
       </div>
