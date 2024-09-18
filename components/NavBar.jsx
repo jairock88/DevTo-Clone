@@ -37,7 +37,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false); // Cerrar el dropdown si el clic fue afuera
+        setIsDropdownOpen(false); // Cerrar el dropdown si usuario da clic afuera
       }
     };
 

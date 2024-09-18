@@ -17,8 +17,10 @@ El sitio web cuenta con las siguientes funcionalidades:
 
 - **Implementación de ReCaptcha en formulario de creación de usuario**
 - **Busqueda de contenido desde la navbar**
-- **Creación de post (opciones de formato de texto)**:
-- **Subir archivos de imagen (en lugar de URL)**: Los posts creados se muestran de manera dinámica en la interfaz.
+- **Creación de post (opciones de formato de texto)**
+- **Subir archivos de imagen (en lugar de URL)**
+- **Menu para mobile version**
+
 
 ## Tecnologías utilizadas
 

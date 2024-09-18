@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-
 import clsx from "clsx";
 import { signupUser } from "@/utils/api";
 import { toast } from "sonner";
@@ -45,7 +44,6 @@ export default function UserSignup() {
         <h2 className="text-[1.20rem] font-bold mb-6 mt-4 text-gray-900">
           Create your account
         </h2>
-        {/* Asegurarse de pasar handleSubmit en el evento onSubmit */}
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -205,6 +203,9 @@ export default function UserSignup() {
                 type="checkbox"
                 id="not_robot"
                 className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                {...register("not_robot", {
+                  required: "Please confirm you are not a robot",
+                })}
               />
               <label
                 htmlFor="not_robot"
@@ -218,6 +219,11 @@ export default function UserSignup() {
                 className="ml-auto h-8"
               />
             </div>
+            {errors.not_robot && (
+              <span className="text-xs text-red-500">
+                {errors.not_robot.message}
+              </span>
+            )}
           </div>
 
           <button
