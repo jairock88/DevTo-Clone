@@ -7,6 +7,7 @@ module.exports = {
       "i0.wp.com/codigoespagueti.com",
       "pbs.twimg.com",
       "www.pexels.com",
+      "web-assets.esetstatic.com",
     ],
   },
 };
