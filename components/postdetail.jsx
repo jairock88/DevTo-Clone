@@ -37,21 +37,17 @@ export default function PostDetail() {
                 alt="Post Image"
                 layout="fill"
                 objectFit="cover"
-                width={600}
-                height={240}
               />
               <div className="absolute inset-0 "></div>
             </div>
 
             {/* Post content */}
             <div className="p-4">
+              <div className="flex items-center mb-4">
+                {/* Mostrar imagen y nombre del usuario */}
                 <Image
                   src={post.user.profilePic || "/path/to/default-avatar.jpg"}
                   alt="User avatar"
-                  width={40}
-                  height={40}
-                  className="rounded-full mr-3 object-cover"
-                />alt="User avatar"
                   className="w-10 h-10 rounded-full mr-3 object-cover"
                 />
                 <div>

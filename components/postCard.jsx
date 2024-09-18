@@ -37,6 +37,7 @@ export default function PostCard() {
                   alt="Post Image"
                   layout="fill"
                   objectFit="cover"
+                  unoptimized={true}
                 />
               </div>
             )}
