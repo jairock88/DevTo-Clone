@@ -159,13 +159,13 @@ export default function Sidebar() {
               key={index}
               className="hover:bg-blue-600/20 rounded-md transition-colors duration-100"
             >
-              <a
+              <button
                 href="#"
                 className="flex items-center space-x-3 text-gray-700 rounded-md p-2"
               >
                 <item.icon className="w-5 h-5" />
                 <span className="text-sm font-medium">{item.text}</span>
-              </a>
+              </button>
             </li>
           ))}
         </ul>

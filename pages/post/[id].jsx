@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { getPostById } from "@/utils/api";
 import Navbar from "@/components/NavBar";
 import { Heart, MessageCircle, Star, Bookmark } from "lucide-react";
-
+import Image from "next/image";
 export default function PostDetail() {
   const router = useRouter();
   const { id } = router.query;
@@ -33,7 +33,9 @@ export default function PostDetail() {
       <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-lg text-gray-800 overflow-hidden mt-[64px]">
         {/* Header Image */}
         <div className="relative h-48 bg-blue-200">
-          <img
+          <Image
+            width={600}
+            height={240}
             src={post.image}
             alt="Post Image"
             className="w-full h-full object-cover"
@@ -43,7 +45,7 @@ export default function PostDetail() {
         {/* Content */}
         <div className="p-6">
           <div className="flex items-center mb-4">
-            <img
+            <Image
               src={post.user.profilePic}
               alt="User avatar"
               className="w-10 h-10 rounded-full mr-4"
@@ -83,16 +85,16 @@ export default function PostDetail() {
           {/* Interaction buttons */}
           <div className="flex items-center mt-6 space-x-4">
             <button className="flex items-center space-x-1 text-gray-500">
-              <Heart size={20} /> <span>31</span>
+              <Heart size={20} /> <span>8</span>
             </button>
             <button className="flex items-center space-x-1 text-gray-500">
               <MessageCircle size={20} /> <span>10</span>
             </button>
             <button className="flex items-center space-x-1 text-gray-500">
-              <Star size={20} /> <span>11</span>
+              <Star size={20} /> <span>100</span>
             </button>
             <button className="flex items-center space-x-1 text-gray-500">
-              <Bookmark size={20} /> <span>24</span>
+              <Bookmark size={20} /> <span>10</span>
             </button>
           </div>
         </div>
