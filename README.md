@@ -1,40 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Clon de Dev.to
 
-## Getting Started
+Este proyecto es un clon del sitio web **[Dev.to](https://dev.to/)**, construido utilizando **React** **Next.js**  y **Tailwind CSS**. El objetivo es replicar algunas de las funcionalidades clave de Dev.to, ofreciendo un diseño responsivo y dinámico.
 
-First, run the development server:
+## Características
+
+El sitio web cuenta con las siguientes funcionalidades:
+
+- **Creación de usuarios**: Los nuevos usuarios pueden registrarse en el sitio.
+- **Inicio de sesión**: Los usuarios registrados pueden iniciar sesión para acceder a sus cuentas.
+- **Creación de post**: Los usuarios autenticados pueden crear nuevas publicaciones.
+- **Renderizado dinámico de los post**: Los posts creados se muestran de manera dinámica en la interfaz.
+- **Menú desplegable en el avatar del usuario**: Al hacer clic en el avatar del usuario en la barra de navegación, se despliega un menú con la opción de cerrar sesión.
+- **Conteo dinámico de usuarios**: El número total de usuarios creados se actualiza automáticamente según los datos de la API.
+
+## Características en Desarrollo
+
+- **Implementación de ReCaptcha en formulario de creación de usuario**
+- **Busqueda de contenido desde la navbar**
+- **Creación de post (opciones de formato de texto)**:
+- **Subir archivos de imagen (en lugar de URL)**: Los posts creados se muestran de manera dinámica en la interfaz.
+
+## Tecnologías utilizadas
+
+Este proyecto utiliza las siguientes tecnologías y dependencias:
+
+### Frontend
+
+- **React**: Librería para construir interfaces de usuario.
+- **Next.js**: Framework basado en React para desarrollo de aplicaciones web.
+- **Tailwind CSS**: Framework de CSS para estilos utilitarios.
+- **clsx**: Utilidad para gestionar clases condicionales.
+- **lucide-react**: Iconos para React.
+- **react-hook-form**: Librería para gestionar formularios en React.
+- **react-google-recaptcha**: Integración de Google reCAPTCHA para protección contra bots.
+- **react-icons**: Paquete de iconos populares para React.
+- **sonner**: Librería para mostrar notificaciones y alertas.
+
+### Dependencias
+
+```json
+"dependencies": {
+  "clsx": "^2.1.1",
+  "lucide-react": "^0.441.0",
+  "next": "14.2.9",
+  "react": "^18",
+  "react-dom": "^18",
+  "react-google-recaptcha": "^3.1.0",
+  "react-hook-form": "^7.53.0",
+  "react-icons": "^5.3.0",
+  "sonner": "^1.5.0"
+}
+```
+## API
+
+El proyecto se conecta con una API que maneja la autenticación de usuarios, creación de posts, y el conteo dinámico de usuarios.
+
+- **Link de la API**: [https://bcknd-chal.onrender.com](https://bcknd-chal.onrender.com)
+- **GitHub de la API**: [https://github.com/jairock88/bcknd-chal](https://github.com/jairock88/bcknd-chal)
+
+## Instalación
+
+1. Clona este repositorio:
+
+   ```bash
+   git clone https://github.com/tu-usuario/tu-repo.git
+    ```
+
+2. Instala las dependencias:
+
+```bash
+npm install
+```
+
+3. Ejecuta el proyecto en modo desarrollo:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
