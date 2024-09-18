@@ -52,15 +52,23 @@ export default function UserSignup() {
               Profile image
             </label>
             <div className="flex items-center border border-gray-100 p-3 rounded-md">
-              <button
-                type="button"
-                className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md mr-2 hover:bg-gray-400/70 focus:outline-none focus:ring-2 focus:ring-gray-500"
-              >
-                Seleccionar archivo
-              </button>
-              <span className="text-sm text-gray-500">
-                Sin archivos seleccionados
-              </span>
+              <input
+                type="text"
+                id="profilePicUrl"
+                placeholder="Enter the URL of your profile picture"
+                className={clsx(
+                  "bg-gray-300 text-gray-700 px-4 py-2 rounded-md w-full hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 cursor-pointer",
+                  { "border-red-500 bg-red-500/10": errors.profilePic }
+                )}
+                {...register("profilePic", {
+                  required: "Profile picture is required",
+                })}
+              />
+              {errors.profilePic && (
+                <span className="mx-1 text-xs text-red-500">
+                  {errors.profilePic.message}
+                </span>
+              )}
             </div>
           </div>
 
@@ -74,7 +82,10 @@ export default function UserSignup() {
             <input
               type="text"
               id="name"
-              className="w-full px-3 py-2 border-[1.5px] border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:border-gray-400 hover:border-[1.5px]"
+              className={clsx(
+                "w-full px-3 py-2 border-[1.5px] border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:border-gray-400 hover:border-[1.5px]",
+                { "border-red-500 bg-red-500/10": errors.name }
+              )}
               placeholder="Name"
               {...register("name", { required: "Name is required" })}
             />

@@ -1,4 +1,5 @@
 const BASE_URL = "https://bcknd-chal.onrender.com";
+//const BASE_URL = "api-blog.jrck.online";
 
 export async function login(email, password) {
   try {
@@ -44,6 +45,7 @@ export async function signupUser(userData) {
         username: userData.username,
         email: userData.email,
         password: userData.password,
+        profilePic: userData.profilePic,
       }),
     });
 
@@ -67,54 +69,55 @@ export async function signupUser(userData) {
   }
 }
 
+// export async function getAllPosts() {
+//   let response = await fetch(`${BASE_URL}/post`);
+//   let data = await response.json();
+
+//   if (data.success) {
+//     let posts = data.data.posts;
+//     return posts.map((post) => ({
+//       id: post._id,
+//       title: post.title,
+//       image: post.image,
+//       body: post.body,
+//       user: post.user,
+//       createdAt: post.createdAt,
+//       updatedAt: post.updatedAt,
+//     }));
+//   } else {
+//     throw new Error("Failed to fetch posts");
+//   }
+// }
+
 export async function getAllPosts() {
   let response = await fetch(`${BASE_URL}/post`);
   let data = await response.json();
 
   if (data.success) {
     let posts = data.data.posts;
-    return posts.map((post) => ({
-      id: post._id,
-      title: post.title,
-      image: post.image,
-      body: post.body,
-      user: post.user,
-      createdAt: post.createdAt,
-      updatedAt: post.updatedAt,
-    }));
+
+    // Añadir lógica para obtener información del usuario
+    const postsWithUserData = await Promise.all(
+      posts.map(async (post) => {
+        const user = await getUser(post.user); // Obtén la información del usuario por cada post
+        return {
+          id: post._id,
+          title: post.title,
+          image: post.image,
+          body: post.body,
+          user: user, // Agrega la información completa del usuario aquí
+          hashtags: post.hashtags,
+          createdAt: post.createdAt,
+          updatedAt: post.updatedAt,
+        };
+      })
+    );
+
+    return postsWithUserData;
   } else {
     throw new Error("Failed to fetch posts");
   }
 }
-
-// export async function createPost(postData) {
-//   try {
-//     const headers = {
-//       "Content-Type": "application/json",
-//     };
-
-//     const token = localStorage.getItem("token");
-//     if (token) {
-//       headers.Authorization = `Bearer ${token}`;
-//     }
-
-//     const response = await fetch(`${BASE_URL}/post`, {
-//       method: "POST",
-//       headers,
-//       body: JSON.stringify(postData),
-//     });
-
-//     if (!response.ok) {
-//       throw new Error(`Error creating post: ${response.statusText}`);
-//     }
-
-//     const data = await response.json();
-//     return data;
-//   } catch (error) {
-//     console.error("Error creating post:", error);
-//     throw error; // Re-lanzar el error para manejarlo en el componente
-//   }
-// }
 
 export async function createPost(title, image, body, tags, token) {
   const response = await fetch(`${BASE_URL}/post/`, {
