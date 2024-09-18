@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { MessageCircle, Bookmark, Heart } from "lucide-react";
 import { getAllPosts } from "@/utils/api";
 import { useRouter } from "next/router";
-import { Image } from "next/image";
+import Image from "next/image";
 
 export default function PostDetail() {
   const [posts, setPosts] = useState([]);
@@ -35,7 +35,8 @@ export default function PostDetail() {
               <Image
                 src={post.image}
                 alt="Post Image"
-                className="w-full h-full object-cover"
+                layout="fill"
+                objectFit="cover"
               />
               <div className="absolute inset-0 "></div>
             </div>

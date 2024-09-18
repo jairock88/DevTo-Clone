@@ -2,6 +2,8 @@
 
 Este proyecto es un clon del sitio web **[Dev.to](https://dev.to/)**, construido utilizando **React** **Next.js**  y **Tailwind CSS**. El objetivo es replicar algunas de las funcionalidades clave de Dev.to, ofreciendo un diseño responsivo y dinámico.
 
+### Vercel Deploy: https://dev-to-clone-peach.vercel.app/
+
 ## Características
 
 El sitio web cuenta con las siguientes funcionalidades:
