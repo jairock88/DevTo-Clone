@@ -79,7 +79,7 @@ export default function CreatePost() {
               <input
                 type="text"
                 className="w-full p-2 outline-none"
-                placeholder="(paste your url image: only from www.pexels.com)"
+                placeholder="paste your url image: only from www.pexels.com"
                 {...register("postImage")}
               />
 
