@@ -8,6 +8,7 @@ module.exports = {
       "pbs.twimg.com",
       "www.pexels.com",
       "web-assets.esetstatic.com",
+      "revistaiconica.com",
     ],
   },
 };
