@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { MessageCircle, Bookmark, Heart } from "lucide-react";
 import { getAllPosts } from "@/utils/api";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 export default function PostCard() {
   const [posts, setPosts] = useState([]);
@@ -31,10 +32,11 @@ export default function PostCard() {
           >
             {index === 0 && (
               <div className="w-full h-60 relative">
-                <img
+                <Image
                   src={post.image}
                   alt="Post Image"
-                  className="w-full h-full object-cover"
+                  layout="fill"
+                  objectFit="cover"
                 />
               </div>
             )}
@@ -43,8 +45,10 @@ export default function PostCard() {
             <div className="p-4">
               <div className="flex items-center mb-4">
                 {/* imagen y nombre del usuario */}
-                <img
+                <Image
                   src={post.user.profilePic}
+                  width={40}
+                  height={40}
                   alt="User avatar"
                   className="w-10 h-10 rounded-full mr-3 object-cover"
                 />

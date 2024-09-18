@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { MessageCircle, Bookmark, Heart } from "lucide-react";
 import { getAllPosts } from "@/utils/api";
 import { useRouter } from "next/router";
+import { Image } from "next/image";
 
 export default function PostDetail() {
   const [posts, setPosts] = useState([]);
@@ -31,7 +32,7 @@ export default function PostDetail() {
           >
             {/* Header image */}
             <div className="w-full h-60 relative">
-              <img
+              <Image
                 src={post.image}
                 alt="Post Image"
                 className="w-full h-full object-cover"
@@ -43,7 +44,7 @@ export default function PostDetail() {
             <div className="p-4">
               <div className="flex items-center mb-4">
                 {/* Mostrar imagen y nombre del usuario */}
-                <img
+                <Image
                   src={post.user.profilePic || "/path/to/default-avatar.jpg"}
                   alt="User avatar"
                   className="w-10 h-10 rounded-full mr-3 object-cover"
