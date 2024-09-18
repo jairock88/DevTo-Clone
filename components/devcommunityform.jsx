@@ -7,14 +7,13 @@ export default function DevCommunityUsers() {
 
   // useEffect para obtener el conteo de usuarios cuando el componente se monta
   useEffect(() => {
-    // Función para obtener el conteo de usuarios
     const fetchUserCount = async () => {
       const count = await getUserCount();
       setUserCount(count);
     };
 
     fetchUserCount();
-  }, []); // El array vacío asegura que esto solo se ejecute una vez al montar el componente
+  }, []);
 
   return (
     <div>

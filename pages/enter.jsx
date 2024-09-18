@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import Button from "@/components/formButtons";
 import Terms from "@/components/terms";
 import DevCommunityUsers from "@/components/devcommunityform";
+import Link from "next/link";
 
 export default function LoginPage() {
   const {
@@ -130,9 +131,12 @@ export default function LoginPage() {
                       Remember me
                     </label>
                   </div>
-                  <a href="#" className="text-sm text-blue-500 hover:underline">
+                  <Link
+                    href="#"
+                    className="text-sm text-blue-500 hover:underline"
+                  >
                     Forgot password?
-                  </a>
+                  </Link>
                 </div>
                 <button
                   type="submit"
@@ -171,12 +175,12 @@ export default function LoginPage() {
               <Terms />
               <p className="mt-4 text-center text-gray-600 text-md">
                 New to DEV Community?{" "}
-                <a
+                <Link
                   href="/usersignup"
                   className="text-blue-600 mb-4 hover:underline"
                 >
                   Create account
-                </a>
+                </Link>
               </p>
             </div>
           </div>
