@@ -49,6 +49,8 @@ export default function PostDetail() {
                   src={post.user.profilePic || "/path/to/default-avatar.jpg"}
                   alt="User avatar"
                   className="w-10 h-10 rounded-full mr-3 object-cover"
+                  width={40}
+                  height={40}
                 />
                 <div>
                   <h2 className="font-semibold text-lg">

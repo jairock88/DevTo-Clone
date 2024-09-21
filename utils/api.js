@@ -161,16 +161,48 @@ export async function getUserCount() {
   }
 }
 
-export async function getPostById(id) {
-  try {
-    const response = await fetch(`${BASE_URL}/post/${id}`);
-    if (!response.ok) {
-      throw new Error("Failed to fetch post");
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching post:", error);
-    throw error;
+// export async function getPostById(id) {
+//   try {
+//     const response = await fetch(`${BASE_URL}/post/${id}`);
+//     if (!response.ok) {
+//       throw new Error("Failed to fetch post");
+//     }
+//     const data = await response.json();
+//     return data;
+//   } catch (error) {
+//     console.error("Error fetching post:", error);
+//     throw error;
+//   }
+// }
+
+export async function getPostById(postId) {
+  if (postId.length !== 24) {
+    throw new Error(`Invalid postId: ${postId}. Must be a valid ObjectId`);
+  }
+
+  // Hacemos una petición al endpoint de un post específico
+  let response = await fetch(`${BASE_URL}/post/${postId}`);
+  let data = await response.json();
+
+  // Verificamos si la respuesta fue exitosa
+  if (data.success) {
+    let post = data.data.post;
+
+    // Obtenemos los datos del usuario del post
+    const user = await getUser(post.user);
+
+    // Devolvemos el post con la información del usuario
+    return {
+      id: post._id,
+      title: post.title,
+      image: post.image,
+      body: post.body,
+      user: user,
+      hashtags: post.hashtags,
+      createdAt: post.createdAt,
+      updatedAt: post.updatedAt,
+    };
+  } else {
+    throw new Error("Failed to fetch the post");
   }
 }
