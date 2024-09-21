@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { getUser } from "@/utils/api";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   const [user, setUser] = useState(null);
@@ -62,10 +63,12 @@ export default function Navbar() {
           <div className="max-w-[1350px] mx-auto h-[56px] flex items-center justify-between bg-white">
             <div className="flex items-center flex-1">
               <div className="mr-4">
-                <img
+                <Image
                   onClick={homeClick}
+                  height={40}
+                  width={40}
                   className="h-10 hover:cursor-pointer"
-                  src="https://media.dev.to/cdn-cgi/image/quality=100/https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png"
+                  src="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png"
                   alt="Logo"
                 />
               </div>

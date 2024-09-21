@@ -98,14 +98,14 @@ export async function getAllPosts() {
   }
 }
 
-export async function createPost(title, image, body, tags, token) {
+export async function createPost(title, image, body, hashtags, token) {
   const response = await fetch(`${BASE_URL}/post/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
     },
-    body: JSON.stringify({ title, image, body, tags }),
+    body: JSON.stringify({ title, image, body, hashtags }),
   });
   const data = await response.json();
   return data;
