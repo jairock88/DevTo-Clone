@@ -73,6 +73,12 @@ module.exports = {
         port: "",
         pathname: "/biografia/n/fotos/**",
       },
+      {
+        protocol: "https",
+        hostname: "github.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };
