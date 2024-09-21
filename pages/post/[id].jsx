@@ -71,7 +71,7 @@ export default function PostDetail() {
                   key={index}
                   className="bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-sm"
                 >
-                  #{tag}
+                  {tag}
                 </span>
               ))
             ) : (
